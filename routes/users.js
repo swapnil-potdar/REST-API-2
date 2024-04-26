@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 module.exports = router;
@@ -8,16 +8,11 @@ module.exports = router;
   res.send('respond with a resource');
 }); */
 
-
-
-
 /* const mongoose = require("mongoose");
  
 
  /* mongoose.connect('mongodb://127.0.0.1:27017/test')
-  .then(() => console.log('Connected!')); */ 
-
-
+  .then(() => console.log('Connected!')); */
 
 /* const userschema = mongoose.Schema({
   username: String,
