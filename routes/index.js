@@ -6,6 +6,8 @@ const Product = require(".././models/product.model");
 
 router.use(express.json());
 
+router.use(express.urlencoded({ extended: false }));
+
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
@@ -58,7 +60,7 @@ router.post("/api/products", async function (req, res) {
 });
 
 // update product
-router.put("/api/product/:id", async function (req, res) {
+router.put("/api/products/:id", async function (req, res) {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndUpdate(id, req.body);
@@ -67,8 +69,24 @@ router.put("/api/product/:id", async function (req, res) {
       return res.status(404).json({ message: "Product not found" });
     }
     const updatedProduct = await Product.findById(id);
+    res.status(200).json(updatedProduct);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+});
+
+//delete product
+router.delete("/api/products/:id", async function (req, res) {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByIdAndDelete(id);
+
+    if (!product) {
+      return res.status(404).json({ message: "product not found" });
+    }
+    res.status(200).json({ message: "product deleted successfully" });
+  } catch (error) {
+    res.status(200).json({ message: error.message });
   }
 });
 
