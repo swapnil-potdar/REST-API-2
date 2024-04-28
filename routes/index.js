@@ -4,24 +4,25 @@ const UserModel = require("./users");
 const mongoose = require("mongoose");
 const Product = require(".././models/product.model");
 
+//middleware
 router.use(express.json());
-
 router.use(express.urlencoded({ extended: false }));
+
+//routes
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 
-/* router.get('/', function(req,res, next){
-  req.session.sessionname = "testsession",
-  res.render('index');
+router.get("/", function (req, res, next) {
+  (req.session.sessionname = "testsession"), res.render("index");
 });
 
-router.get('/check',function(req,res){
+router.get("/check", function (req, res) {
   console.log(req.session);
-  res.send('session is working');
-}) */
+  res.send("session is working");
+});
 
 router.post("/", function (req, res) {
   console.log(req.body);
@@ -29,17 +30,17 @@ router.post("/", function (req, res) {
 });
 
 // get all products
-router.get("/api/products", async function (req, res) {
+/* router.get("/api/products", async function (req, res) {
   try {
     const product = await Product.find({});
     res.status(200).json(product);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-});
+}); */
 
 // find product by id
-router.get("/api/products/:id", async function (req, res) {
+/* router.get("/api/products/:id", async function (req, res) {
   try {
     const { id } = req.params;
     const product = await Product.findById(id);
@@ -47,20 +48,20 @@ router.get("/api/products/:id", async function (req, res) {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-});
+}); */
 
 // create product
-router.post("/api/products", async function (req, res) {
+/* router.post("/api/products", async function (req, res) {
   try {
     const product = await Product.create(req.body);
     res.status(200).json(product);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-});
+}); */
 
 // update product
-router.put("/api/products/:id", async function (req, res) {
+/* router.put("/api/products/:id", async function (req, res) {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndUpdate(id, req.body);
@@ -73,10 +74,10 @@ router.put("/api/products/:id", async function (req, res) {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-});
+}); */
 
 //delete product
-router.delete("/api/products/:id", async function (req, res) {
+/* router.delete("/api/products/:id", async function (req, res) {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndDelete(id);
@@ -88,7 +89,7 @@ router.delete("/api/products/:id", async function (req, res) {
   } catch (error) {
     res.status(200).json({ message: error.message });
   }
-});
+}); */
 
 mongoose
   .connect(
